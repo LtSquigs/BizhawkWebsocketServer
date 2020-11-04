@@ -14,21 +14,21 @@ namespace BizHawkWebsocketServer
     }
     class ResultMessage
     {
-        public const string message_type = "RESULT";
+        public string message_type = "RESULT";
         public string id { get; set; }
         public object result { get; set; }
     }
 
     class EventResponse
     {
-        public const string message_type = "EVENT_RESPONSE";
+        public string message_type = "EVENT_RESPONSE";
         public string event_name { get; set; }
         public object event_args { get; set; }
     }
 
     class ErrorMessage
     {
-        public const string message_type = "ERROR";
+        public string message_type = "ERROR";
         public string id { get; set; }
         public string error_string { get; set; }
     }
