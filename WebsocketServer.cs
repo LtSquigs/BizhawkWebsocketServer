@@ -22,15 +22,15 @@ namespace BizHawkWebsocketServer
     class EventResponse
     {
         public const string message_type = "EVENT_RESPONSE";
-        public string eventName { get; set; }
-        public object eventArgs { get; set; }
+        public string event_name { get; set; }
+        public object event_args { get; set; }
     }
 
     class ErrorMessage
     {
         public const string message_type = "ERROR";
         public string id { get; set; }
-        public string errorString { get; set; }
+        public string error_string { get; set; }
     }
 
     class MessageHandler : WebSocketBehavior
@@ -95,7 +95,7 @@ namespace BizHawkWebsocketServer
             {
                 var errorMessage = new ErrorMessage();
                 errorMessage.id = currentMessageId;
-                errorMessage.errorString = ex.Message;
+                errorMessage.error_string = ex.Message;
 
                 Send(JsonConvert.SerializeObject(errorMessage));
             }
@@ -166,8 +166,8 @@ namespace BizHawkWebsocketServer
         protected void EventSender(string name, EventArgs args)
         {
             var result = new EventResponse();
-            result.eventName = name;
-            result.eventArgs = args;
+            result.event_name = name;
+            result.event_args = args;
 
             Send(JsonConvert.SerializeObject(result));
         }
