@@ -48,6 +48,23 @@ namespace BizHawkWebsocketServer
 
         public void Restart()
         {
+            if (Owner != null)
+            {
+                Owner.Resize += (object sender, EventArgs e) =>
+                {
+                    var parent = (Form)sender;
+                    if(parent.WindowState == FormWindowState.Minimized)
+                    {
+                        WindowState = FormWindowState.Minimized;
+                    }
+
+                    if(parent.WindowState == FormWindowState.Normal)
+                    {
+                        WindowState = FormWindowState.Normal;
+                    }
+                };
+                Owner = null;
+            }
             // Need to update the APIs that are being sent down to the Message Handler here
             ApiDispatcher.UpdateApis(GameInfoApi, EmuClientApi, EmulationApi, GuiApi, JoypadApi, MemoryApi);
         }
