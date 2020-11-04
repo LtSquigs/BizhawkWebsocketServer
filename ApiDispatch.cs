@@ -67,25 +67,32 @@ namespace BizHawkWebsocketServer
             string method = parts[1];
 
             MethodInfo methodFunc;
+            object apiInstance = null;
 
             switch(api)
             {
                 case "GameInfoApi":
+                    apiInstance = gameInfoApi;
                     methodFunc = gameInfoApi.GetType().GetMethod(method);
                     break;
                 case "EmuClientApi":
+                    apiInstance = emuClientApi;
                     methodFunc = emuClientApi.GetType().GetMethod(method);
                     break;
                 case "EmulationApi":
+                    apiInstance = emulationApi;
                     methodFunc = emulationApi.GetType().GetMethod(method);
                     break;
                 case "GuiApi":
+                    apiInstance = guiApi;
                     methodFunc = guiApi.GetType().GetMethod(method);
                     break;
                 case "JoypadApi":
+                    apiInstance = joypadApi;
                     methodFunc = joypadApi.GetType().GetMethod(method);
                     break;
                 case "MemoryApi":
+                    apiInstance = memoryApi;
                     methodFunc = memoryApi.GetType().GetMethod(method);
                     break;
                 default:
@@ -97,7 +104,7 @@ namespace BizHawkWebsocketServer
                 throw new Exception($"Unknown Method {method} on API {api}");
             }
 
-            return methodFunc.Invoke(gameInfoApi, arguments);
+            return methodFunc.Invoke(apiInstance, arguments);
         }
 
         public void OnRomLoaded(object sender, EventArgs e)
