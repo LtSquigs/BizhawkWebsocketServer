@@ -19,12 +19,12 @@ namespace BizHawkWebsocketServer
         private IJoypadApi joypadApi;
         private IMemoryApi memoryApi;
 
-        public ApiDispatch(IGameInfoApi GameInfoApi, IEmuClientApi EmuClientApi, IEmulationApi EmulationApi, IGuiApi GuiApi, IJoypadApi JoypadApi, IMemoryApi MemoryApi, IMemoryEventsApi MemoryEventsApi)
+        public ApiDispatch(IGameInfoApi GameInfoApi, IEmuClientApi EmuClientApi, IEmulationApi EmulationApi, IGuiApi GuiApi, IJoypadApi JoypadApi, IMemoryApi MemoryApi)
         {
-            UpdateApis(GameInfoApi, EmuClientApi, EmulationApi, GuiApi, JoypadApi, MemoryApi, MemoryEventsApi);
+            UpdateApis(GameInfoApi, EmuClientApi, EmulationApi, GuiApi, JoypadApi, MemoryApi);
         }
 
-        public void UpdateApis(IGameInfoApi GameInfoApi, IEmuClientApi EmuClientApi, IEmulationApi EmulationApi, IGuiApi GuiApi, IJoypadApi JoypadApi, IMemoryApi MemoryApi, IMemoryEventsApi MemoryEventsApi)
+        public void UpdateApis(IGameInfoApi GameInfoApi, IEmuClientApi EmuClientApi, IEmulationApi EmulationApi, IGuiApi GuiApi, IJoypadApi JoypadApi, IMemoryApi MemoryApi)
         {
             // De-register any events here
             if(emuClientApi != null)

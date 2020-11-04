@@ -30,14 +30,11 @@ namespace BizHawkWebsocketServer
         [RequiredApi]
         public IMemoryApi MemoryApi { get; set; }
 
-        [RequiredApi]
-        public IMemoryEventsApi MemoryEventsApi { get; set; }
-
         public CustomMainForm()
         {
             InitializeComponent();
 
-            ApiDispatcher = new ApiDispatch(GameInfoApi, EmuClientApi, EmulationApi, GuiApi, JoypadApi, MemoryApi, MemoryEventsApi);
+            ApiDispatcher = new ApiDispatch(GameInfoApi, EmuClientApi, EmulationApi, GuiApi, JoypadApi, MemoryApi);
 
             ApiServer = new WebsocketServer("/", 64646, ApiDispatcher);
             ApiServer.Start();
@@ -52,7 +49,7 @@ namespace BizHawkWebsocketServer
         public void Restart()
         {
             // Need to update the APIs that are being sent down to the Message Handler here
-            ApiDispatcher.UpdateApis(GameInfoApi, EmuClientApi, EmulationApi, GuiApi, JoypadApi, MemoryApi, MemoryEventsApi);
+            ApiDispatcher.UpdateApis(GameInfoApi, EmuClientApi, EmulationApi, GuiApi, JoypadApi, MemoryApi);
         }
 
         public void UpdateValues(ToolFormUpdateType type)
