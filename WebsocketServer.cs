@@ -53,14 +53,14 @@ namespace BizHawkWebsocketServer
                     MissingMemberHandling = MissingMemberHandling.Error
                 });
 
+                currentMessageId = request.id;
+
                 var message = new ResultMessage();
                 message.id = currentMessageId;
 
                 switch (request.message_type)
                 {
                     case "METHOD":
-                        currentMessageId = request.id;
-
                         var result = apiDispatch.DispatchCall(request.function, request.arguments);
 
                         message.result = result;
@@ -69,7 +69,6 @@ namespace BizHawkWebsocketServer
 
                         break;
                     case "REGISTER_EVENT":
-
                         RegisterEvent(request.function);
 
                         message.result = "Event Registered";
@@ -78,7 +77,6 @@ namespace BizHawkWebsocketServer
 
                         break;
                     case "UNREGISTER_EVENT":
-
                         UnregisterEvent(request.function);
 
                         message.result = "Event Unregistered";
