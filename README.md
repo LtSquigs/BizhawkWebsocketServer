@@ -1,2 +1,2 @@
-# BizHawkWebsocketServer
- An ExternalTool for BizHawk that exposes the API through Websockets
+# BizhawkWebsocketServer
+ An External Tool for Bizhawk that Exposes various APIs over Websockets
